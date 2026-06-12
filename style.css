@@ -1,0 +1,757 @@
+/* ==========================================================================
+   共通設定・リセット
+   ========================================================================== */
+
+/* ブラウザごとの余白の違いをなくし、box-sizingを統一する */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CSS変数（カラーなどをまとめて管理することで、後から変更しやすくする） */
+:root {
+  --color-bg: #ffffff;          /* 背景色：白 */
+  --color-text: #333333;        /* 基本の文字色 */
+  --color-sub: #777777;         /* サブテキストの色（少し薄いグレー） */
+  --color-accent: #ff7a30;       /* アクセントカラー：オレンジ */
+  --color-accent-light: #fff1e8; /* アクセントの薄い色（背景などに使用） */
+  --color-border: #eeeeee;      /* 区切り線の色 */
+  --max-width: 1100px;          /* コンテンツの最大幅 */
+  --header-height: 70px;        /* ヘッダーの高さ（スクロール時の調整に使用） */
+}
+
+/* ページ全体の基本フォント・行間など */
+body {
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", "Yu Gothic", sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.8;
+  /* 固定ヘッダーの高さ分、本文が隠れないように余白を確保 */
+  padding-top: var(--header-height);
+}
+
+/* リンクの基本デザイン（下線をなくし、色を継承） */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* リストの黒丸を非表示にする */
+ul {
+  list-style: none;
+}
+
+/* 画像をレスポンシブにする（親要素の幅に合わせる） */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* セクションごとに左右の余白とセンタリングを行うための共通クラス */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* セクション全体に上下の余白をたっぷり取る（余白を広く取るデザインコンセプト） */
+.section {
+  padding: 100px 0;
+}
+
+/* セクションのタイトル */
+.section__title {
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: 0.05em;
+  /* タイトルの下に短いオレンジの線を引く */
+  position: relative;
+  padding-bottom: 20px;
+  margin-bottom: 8px;
+}
+
+.section__title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* セクションのサブタイトル（日本語の説明） */
+.section__subtitle {
+  text-align: center;
+  color: var(--color-sub);
+  margin-bottom: 60px;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+}
+
+
+/* ==========================================================================
+   ボタン
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  padding: 16px 40px;
+  border-radius: 50px; /* 角を丸くしてやわらかい印象に */
+  font-weight: bold;
+  transition: all 0.3s ease; /* ホバー時の変化を滑らかにする */
+}
+
+/* メインのボタン（オレンジ背景） */
+.btn--primary {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(255, 122, 48, 0.3);
+}
+
+/* ボタンにマウスを乗せたときの効果（少し浮き上がる） */
+.btn--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(255, 122, 48, 0.4);
+}
+
+
+/* ==========================================================================
+   ヘッダー（固定ナビゲーション）
+   ========================================================================== */
+
+.header {
+  position: fixed; /* スクロールしても常に画面上部に固定 */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background-color: rgba(255, 255, 255, 0.9); /* 半透明の白 */
+  backdrop-filter: blur(6px); /* 背景を少しぼかして高級感を出す */
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000; /* 他の要素より手前に表示する */
+  transition: box-shadow 0.3s ease;
+}
+
+/* スクロールした時にシャドウをつけるためのクラス（JSで付与） */
+.header.is-scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.header__inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ロゴ部分 */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0.05em;
+}
+
+/* ロゴの中のアクセント文字（オレンジの「.」） */
+.logo .accent {
+  color: var(--color-accent);
+}
+
+/* ナビゲーションリスト（PC表示） */
+.nav__list {
+  display: flex;
+  gap: 32px;
+}
+
+.nav__link {
+  font-size: 15px;
+  position: relative;
+  padding: 4px 0;
+  transition: color 0.3s ease;
+}
+
+/* リンクにマウスを乗せたときに文字色を変更 */
+.nav__link:hover {
+  color: var(--color-accent);
+}
+
+/* リンクの下にアンダーラインをアニメーションで表示 */
+.nav__link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transition: width 0.3s ease;
+}
+
+.nav__link:hover::after {
+  width: 100%;
+}
+
+/* ハンバーガーメニュー（スマホ用：通常は非表示） */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-text);
+  transition: all 0.3s ease;
+}
+
+/* ハンバーガーがアクティブ（開いている）時に「×」の形に変形 */
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0; /* 真ん中の線は消す */
+}
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ==========================================================================
+   Hero セクション
+   ========================================================================== */
+
+.hero {
+  min-height: 90vh; /* 画面の高さの90%を使い、迫力のあるファーストビューにする */
+  display: flex;
+  align-items: center;
+  background:
+    /* 上から下に向けて、薄いオレンジから白へグラデーション */
+    linear-gradient(180deg, var(--color-accent-light) 0%, #ffffff 60%);
+}
+
+.hero__inner {
+  text-align: center;
+}
+
+.hero__greeting {
+  color: var(--color-accent);
+  font-weight: bold;
+  margin-bottom: 12px;
+  letter-spacing: 0.2em;
+}
+
+.hero__name {
+  font-size: 48px;
+  margin-bottom: 24px;
+  letter-spacing: 0.05em;
+}
+
+/* 名前の下に英語表記を小さく表示 */
+.hero__name-en {
+  display: block;
+  font-size: 18px;
+  color: var(--color-sub);
+  margin-top: 8px;
+  letter-spacing: 0.2em;
+}
+
+.hero__catch {
+  font-size: 18px;
+  color: var(--color-text);
+  margin-bottom: 40px;
+}
+
+
+/* ==========================================================================
+   About セクション
+   ========================================================================== */
+
+.about__content {
+  max-width: 800px;
+  margin: 0 auto 60px;
+  text-align: center;
+}
+
+.about__text {
+  font-size: 16px;
+}
+
+/* 「得意なこと」「今後の目標」を横並びにするレイアウト */
+.about__cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2列で表示 */
+  gap: 32px;
+}
+
+
+/* ==========================================================================
+   カードデザイン（共通）
+   ========================================================================== */
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px; /* 角を丸くして親しみやすい印象に */
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* カードにマウスを乗せたときに少し浮き上がる効果 */
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.card__title {
+  font-size: 18px;
+  margin-bottom: 16px;
+  /* タイトルの左にオレンジのラインを表示 */
+  padding-left: 12px;
+  border-left: 4px solid var(--color-accent);
+}
+
+.card__list li {
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+/* リストの先頭にオレンジの丸印をつける */
+.card__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-accent);
+  border-radius: 50%;
+}
+
+
+/* ==========================================================================
+   Skills セクション
+   ========================================================================== */
+
+.skills__list {
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.skill__head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.skill__percent {
+  color: var(--color-accent);
+}
+
+/* バーの背景（グレー） */
+.skill__bar {
+  width: 100%;
+  height: 10px;
+  background-color: #f1f1f1;
+  border-radius: 10px;
+  overflow: hidden; /* 内側のバーが角丸からはみ出さないようにする */
+}
+
+/* バーの中身（オレンジ）：最初は幅0%で、JSによってアニメーションで広がる */
+.skill__bar-inner {
+  height: 100%;
+  width: 0%; /* 初期値。data-width属性の値までJSでアニメーションさせる */
+  background-color: var(--color-accent);
+  border-radius: 10px;
+  transition: width 1.2s ease; /* ゆっくり伸びるアニメーション */
+}
+
+
+/* ==========================================================================
+   Works セクション
+   ========================================================================== */
+
+.works__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* PCでは2列表示 */
+  gap: 40px;
+}
+
+.work-card {
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  overflow: hidden; /* 画像の角も一緒に丸くするため */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+/* 画像エリア：アスペクト比を固定して綺麗に見せる */
+.work-card__image {
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+}
+
+.work-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 画像を切り取って枠にぴったり合わせる */
+  transition: transform 0.5s ease;
+}
+
+/* カードにホバーした時、画像を少し拡大する */
+.work-card:hover .work-card__image img {
+  transform: scale(1.05);
+}
+
+.work-card__body {
+  padding: 24px;
+}
+
+.work-card__title {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.work-card__desc {
+  font-size: 14px;
+  color: var(--color-sub);
+  margin-bottom: 16px;
+}
+
+/* 使用技術タグ */
+.work-card__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.work-card__tech li {
+  font-size: 12px;
+  background-color: var(--color-accent-light);
+  color: var(--color-accent);
+  padding: 4px 12px;
+  border-radius: 999px; /* 完全な丸（ピル形状）にする */
+  font-weight: bold;
+}
+
+.work-card__point {
+  font-size: 14px;
+  margin-bottom: 20px;
+  background-color: #fafafa;
+  padding: 12px 16px;
+  border-radius: 8px;
+}
+
+.work-card__point-label {
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+/* GitHub・サイトへのリンク */
+.work-card__links {
+  display: flex;
+  gap: 12px;
+}
+
+.link {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  border: 1px solid var(--color-border);
+  transition: all 0.3s ease;
+}
+
+.link:hover {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+}
+
+
+/* ==========================================================================
+   Career セクション（タイムライン）
+   ========================================================================== */
+
+.timeline {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  /* タイムラインの縦線を表示するためのpadding */
+  padding-left: 32px;
+}
+
+/* タイムラインの縦線 */
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 8px;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.timeline__item {
+  position: relative;
+  padding-bottom: 48px;
+}
+
+.timeline__item:last-child {
+  padding-bottom: 0;
+}
+
+/* タイムライン上の丸い点 */
+.timeline__dot {
+  position: absolute;
+  left: -32px;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  background-color: #ffffff;
+  border: 4px solid var(--color-accent);
+  border-radius: 50%;
+}
+
+.timeline__date {
+  font-size: 13px;
+  color: var(--color-accent);
+  font-weight: bold;
+  margin-bottom: 4px;
+  letter-spacing: 0.05em;
+}
+
+.timeline__title {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.timeline__desc {
+  font-size: 14px;
+  color: var(--color-sub);
+}
+
+
+/* ==========================================================================
+   Contact セクション
+   ========================================================================== */
+
+.contact__content {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact__text {
+  margin-bottom: 40px;
+  color: var(--color-sub);
+}
+
+.contact__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+/* お問い合わせ項目にマウスを乗せると、背景がうっすらオレンジに */
+.contact__item:hover {
+  background-color: var(--color-accent-light);
+  border-color: var(--color-accent);
+  transform: translateY(-3px);
+}
+
+.contact__label {
+  font-weight: bold;
+  color: var(--color-accent);
+}
+
+.contact__value {
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+
+/* ==========================================================================
+   フッター
+   ========================================================================== */
+
+.footer {
+  background-color: #fafafa;
+  padding: 32px 0;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer__text {
+  font-size: 13px;
+  color: var(--color-sub);
+}
+
+
+/* ==========================================================================
+   ページトップへ戻るボタン
+   ========================================================================== */
+
+.to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 8px 20px rgba(255, 122, 48, 0.3);
+  opacity: 0; /* 通常は非表示 */
+  pointer-events: none; /* 非表示時はクリックできないようにする */
+  transition: all 0.3s ease;
+  z-index: 900;
+}
+
+/* JSによって付与される「表示」クラス */
+.to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.to-top:hover {
+  transform: translateY(-4px);
+}
+
+
+/* ==========================================================================
+   フェードインアニメーション
+   ========================================================================== */
+
+/* 初期状態：少し下に配置し、透明にしておく */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* JSによって画面内に入ったタイミングで付与されるクラス */
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   レスポンシブ対応（タブレット・スマホ）
+   ========================================================================== */
+
+/* 画面幅が900px以下（タブレットサイズ）の場合 */
+@media (max-width: 900px) {
+
+  .section {
+    padding: 80px 0;
+  }
+
+  .hero__name {
+    font-size: 36px;
+  }
+
+  /* About・Worksのカードを1列にする */
+  .about__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .works__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 画面幅が768px以下（スマホサイズ）の場合 */
+@media (max-width: 768px) {
+
+  /* ハンバーガーメニューを表示する */
+  .hamburger {
+    display: flex;
+  }
+
+  /* ナビゲーションを、通常は画面外（右側）に隠す */
+  .nav {
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    width: 70%;
+    max-width: 280px;
+    height: calc(100vh - var(--header-height));
+    background-color: #ffffff;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.05);
+    transform: translateX(100%); /* 画面右外に移動させて隠す */
+    transition: transform 0.3s ease;
+  }
+
+  /* JSによって付与される「開いている」状態のクラス */
+  .nav.is-open {
+    transform: translateX(0);
+  }
+
+  .nav__list {
+    flex-direction: column;
+    padding: 40px;
+    gap: 24px;
+  }
+
+  .hero__name {
+    font-size: 28px;
+  }
+
+  .hero__catch {
+    font-size: 15px;
+  }
+
+  .section__title {
+    font-size: 28px;
+  }
+
+  .timeline {
+    padding-left: 24px;
+  }
+
+  .timeline__dot {
+    left: -24px;
+  }
+}

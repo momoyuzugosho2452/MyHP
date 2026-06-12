@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>山田 太郎 | Portfolio</title>
+  <!-- CSSファイルを読み込み -->
+  <link rel="stylesheet" href="style.css">
+  <!-- アイコン用にGoogle Fontsのアイコンを使う場合（任意） -->
+</head>
+<body>
+
+  <!-- ========================= -->
+  <!-- ヘッダー（固定ナビゲーション） -->
+  <!-- ========================= -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#hero" class="logo">Taro<span class="accent">.</span>Yamada</a>
+
+      <!-- ハンバーガーメニュー（スマホ用） -->
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- ナビゲーションメニュー -->
+      <nav class="nav" id="nav">
+        <ul class="nav__list">
+          <li><a href="#about" class="nav__link">About</a></li>
+          <li><a href="#skills" class="nav__link">Skills</a></li>
+          <li><a href="#works" class="nav__link">Works</a></li>
+          <li><a href="#career" class="nav__link">Career</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================= -->
+  <!-- Hero セクション -->
+  <!-- ========================= -->
+  <section id="hero" class="hero">
+    <div class="container hero__inner fade-in">
+      <p class="hero__greeting">Hello, I'm</p>
+      <h1 class="hero__name">山田 太郎 <span class="hero__name-en">Taro Yamada</span></h1>
+      <p class="hero__catch">
+        「学び続ける姿勢」と「丁寧なコーディング」で、<br>
+        Webサイト制作の現場に新しい価値を届けます。
+      </p>
+      <a href="#works" class="btn btn--primary">制作実績を見る</a>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- About セクション -->
+  <!-- ========================= -->
+  <section id="about" class="section about">
+    <div class="container">
+      <h2 class="section__title fade-in">About</h2>
+      <p class="section__subtitle fade-in">自己紹介</p>
+
+      <div class="about__content fade-in">
+        <p class="about__text">
+          職業訓練校にて約6ヶ月間、Webデザイン・コーディングの基礎から実践までを学習しました。
+          未経験からのスタートでしたが、HTML/CSS/JavaScriptを使ったサイト制作だけでなく、
+          PHPやWordPressを用いた動的なサイト構築にも取り組み、基礎力を身につけました。
+          前職では事務職として、書類作成・データ入力・電話対応など正確さと丁寧さを求められる
+          業務を担当しており、その経験を活かして「相手に伝わる・使いやすい」制作を心がけています。
+        </p>
+      </div>
+
+      <!-- 得意なこと・今後の目標をカードで表示 -->
+      <div class="about__cards">
+        <div class="card fade-in">
+          <h3 class="card__title">得意なこと</h3>
+          <ul class="card__list">
+            <li>レスポンシブ対応のコーディング</li>
+            <li>細部にこだわったデザインの再現</li>
+            <li>正確かつ丁寧な事務作業・データ管理</li>
+            <li>マニュアルやドキュメントの作成</li>
+          </ul>
+        </div>
+
+        <div class="card fade-in">
+          <h3 class="card__title">今後目指していること</h3>
+          <ul class="card__list">
+            <li>WordPressを用いたサイト制作の実務経験を積む</li>
+            <li>JavaScriptでの動的な表現力をさらに強化する</li>
+            <li>UI/UXの知識を深め、使いやすいサイトを作る</li>
+            <li>チーム開発でのコミュニケーション力を高める</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- Skills セクション -->
+  <!-- ========================= -->
+  <section id="skills" class="section skills">
+    <div class="container">
+      <h2 class="section__title fade-in">Skills</h2>
+      <p class="section__subtitle fade-in">スキルセット</p>
+
+      <div class="skills__list">
+
+        <!-- 1つのスキル：名前 + バー -->
+        <div class="skill fade-in">
+          <div class="skill__head">
+            <span class="skill__name">HTML</span>
+            <span class="skill__percent">90%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__bar-inner" data-width="90"></div>
+          </div>
+        </div>
+
+        <div class="skill fade-in">
+          <div class="skill__head">
+            <span class="skill__name">CSS</span>
+            <span class="skill__percent">85%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__bar-inner" data-width="85"></div>
+          </div>
+        </div>
+
+        <div class="skill fade-in">
+          <div class="skill__head">
+            <span class="skill__name">JavaScript</span>
+            <span class="skill__percent">65%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__bar-inner" data-width="65"></div>
+          </div>
+        </div>
+
+        <div class="skill fade-in">
+          <div class="skill__head">
+            <span class="skill__name">PHP</span>
+            <span class="skill__percent">55%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__bar-inner" data-width="55"></div>
+          </div>
+        </div>
+
+        <div class="skill fade-in">
+          <div class="skill__head">
+            <span class="skill__name">WordPress</span>
+            <span class="skill__percent">60%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__bar-inner" data-width="60"></div>
+          </div>
+        </div>
+
+        <div class="skill fade-in">
+          <div class="skill__head">
+            <span class="skill__name">Photoshop</span>
+            <span class="skill__percent">70%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__bar-inner" data-width="70"></div>
+          </div>
+        </div>
+
+        <div class="skill fade-in">
+          <div class="skill__head">
+            <span class="skill__name">Illustrator</span>
+            <span class="skill__percent">65%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__bar-inner" data-width="65"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- Works セクション -->
+  <!-- ========================= -->
+  <section id="works" class="section works">
+    <div class="container">
+      <h2 class="section__title fade-in">Works</h2>
+      <p class="section__subtitle fade-in">制作実績</p>
+
+      <div class="works__grid">
+
+        <!-- 作品カード 1 -->
+        <div class="work-card fade-in">
+          <div class="work-card__image">
+            <img src="https://placehold.jp/600x400.png?text=Cafe+Site" alt="カフェ紹介サイトのイメージ">
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">カフェ紹介サイト</h3>
+            <p class="work-card__desc">
+              架空のカフェを想定したコーポレートサイト。トップページからメニュー・店舗情報・お問い合わせまでを1ページにまとめたシングルページ構成です。
+            </p>
+            <ul class="work-card__tech">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+            <p class="work-card__point">
+              <span class="work-card__point-label">工夫した点：</span>
+              ファーストビューに大きな写真を配置し、スクロールに合わせて要素がフェードインするアニメーションを実装しました。
+            </p>
+            <div class="work-card__links">
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="link link--github">GitHub</a>
+              <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="link link--site">Site</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品カード 2 -->
+        <div class="work-card fade-in">
+          <div class="work-card__image">
+            <img src="https://placehold.jp/600x400.png?text=Recipe+App" alt="レシピ検索アプリのイメージ">
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">レシピ検索アプリ</h3>
+            <p class="work-card__desc">
+              入力したキーワードに応じてレシピ情報を表示するWebアプリ。JavaScriptを使ったDOM操作の練習として制作しました。
+            </p>
+            <ul class="work-card__tech">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+            <p class="work-card__point">
+              <span class="work-card__point-label">工夫した点：</span>
+              検索結果が0件のときのメッセージ表示や、ローディング中の表示を加えることでユーザーが迷わないように配慮しました。
+            </p>
+            <div class="work-card__links">
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="link link--github">GitHub</a>
+              <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="link link--site">Site</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品カード 3 -->
+        <div class="work-card fade-in">
+          <div class="work-card__image">
+            <img src="https://placehold.jp/600x400.png?text=Corporate+Site" alt="企業サイトのイメージ">
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">企業サイト（WordPress）</h3>
+            <p class="work-card__desc">
+              架空の制作会社を想定し、WordPressのテーマをカスタマイズして制作したコーポレートサイトです。
+            </p>
+            <ul class="work-card__tech">
+              <li>WordPress</li>
+              <li>PHP</li>
+              <li>CSS</li>
+            </ul>
+            <p class="work-card__point">
+              <span class="work-card__point-label">工夫した点：</span>
+              固定ページとカスタム投稿タイプを使い分け、お知らせ欄を管理画面から更新できるようにしました。
+            </p>
+            <div class="work-card__links">
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="link link--github">GitHub</a>
+              <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="link link--site">Site</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 作品カード 4 -->
+        <div class="work-card fade-in">
+          <div class="work-card__image">
+            <img src="https://placehold.jp/600x400.png?text=Todo+App" alt="ToDoアプリのイメージ">
+          </div>
+          <div class="work-card__body">
+            <h3 class="work-card__title">ToDo管理アプリ</h3>
+            <p class="work-card__desc">
+              タスクの追加・完了・削除ができるシンプルなToDoアプリです。基礎構文の理解を深める目的で制作しました。
+            </p>
+            <ul class="work-card__tech">
+              <li>HTML</li>
+              <li>CSS</li>
+              <li>JavaScript</li>
+            </ul>
+            <p class="work-card__point">
+              <span class="work-card__point-label">工夫した点：</span>
+              ローカルストレージを使い、ページを再読み込みしてもタスクが保持されるようにしました。
+            </p>
+            <div class="work-card__links">
+              <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="link link--github">GitHub</a>
+              <a href="https://example.com" target="_blank" rel="noopener noreferrer" class="link link--site">Site</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- Career セクション（タイムライン） -->
+  <!-- ========================= -->
+  <section id="career" class="section career">
+    <div class="container">
+      <h2 class="section__title fade-in">Career</h2>
+      <p class="section__subtitle fade-in">経歴</p>
+
+      <div class="timeline">
+
+        <!-- タイムライン項目1 -->
+        <div class="timeline__item fade-in">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <p class="timeline__date">2015年4月</p>
+            <h3 class="timeline__title">○○高等学校 卒業</h3>
+            <p class="timeline__desc">普通科にて学び、情報科の授業でWebサイト制作に初めて触れる。</p>
+          </div>
+        </div>
+
+        <!-- タイムライン項目2 -->
+        <div class="timeline__item fade-in">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <p class="timeline__date">2015年4月 - 2023年12月</p>
+            <h3 class="timeline__title">株式会社○○ 事務職として勤務</h3>
+            <p class="timeline__desc">
+              総務・庶務業務を中心に、書類作成・データ入力・電話・来客対応などを担当。
+              正確性とスケジュール管理力を身につける。
+            </p>
+          </div>
+        </div>
+
+        <!-- タイムライン項目3 -->
+        <div class="timeline__item fade-in">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <p class="timeline__date">2024年1月 - 2024年6月</p>
+            <h3 class="timeline__title">職業訓練校 Webデザイン科 受講</h3>
+            <p class="timeline__desc">
+              HTML/CSS/JavaScriptを中心とした基礎学習に加え、PHP・WordPress・Photoshop・Illustratorなど
+              Web制作に必要な知識・技術を体系的に学習。複数のWebサイト制作課題に取り組む。
+            </p>
+          </div>
+        </div>
+
+        <!-- タイムライン項目4 -->
+        <div class="timeline__item fade-in">
+          <div class="timeline__dot"></div>
+          <div class="timeline__content">
+            <p class="timeline__date">2024年7月 - 現在</p>
+            <h3 class="timeline__title">転職活動・自主学習</h3>
+            <p class="timeline__desc">
+              ポートフォリオサイトの制作や、個人開発を通じてスキルアップを継続中。
+              Web制作・事務系職種への応募を行っている。
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- Contact セクション -->
+  <!-- ========================= -->
+  <section id="contact" class="section contact">
+    <div class="container">
+      <h2 class="section__title fade-in">Contact</h2>
+      <p class="section__subtitle fade-in">お問い合わせ</p>
+
+      <div class="contact__content fade-in">
+        <p class="contact__text">
+          ご質問やご連絡は、下記の方法よりお気軽にお問い合わせください。
+        </p>
+
+        <div class="contact__list">
+          <a href="mailto:example@example.com" class="contact__item">
+            <span class="contact__label">Email</span>
+            <span class="contact__value">example@example.com</span>
+          </a>
+
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="contact__item">
+            <span class="contact__label">GitHub</span>
+            <span class="contact__value">github.com/your-account</span>
+          </a>
+
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" class="contact__item">
+            <span class="contact__label">X (Twitter)</span>
+            <span class="contact__value">@your_account</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= -->
+  <!-- フッター -->
+  <!-- ========================= -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">&copy; 2026 Taro Yamada. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- ページトップへ戻るボタン -->
+  <a href="#hero" class="to-top" id="toTop" aria-label="ページトップへ戻る">↑</a>
+
+  <!-- JavaScriptファイルを読み込み（bodyの最後に置くことで表示速度を優先） -->
+  <script src="script.js"></script>
+</body>
+</html>
